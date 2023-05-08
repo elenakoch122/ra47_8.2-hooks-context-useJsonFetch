@@ -7,14 +7,14 @@ export default function useJsonFetch(request, options = null) {
 
   useEffect(() => {
     const fetchData = async (query) => {
-      setLoading('Идёт загрузка...');
+      setLoading(`Идёт загрузка...`);
 
       try {
         const response = await fetch(process.env.REACT_APP_URL + query, options);
         const data = await response.json();
-        setData(`Данные загружены. ${data}`);
-      } catch (error) {
-        setError('Ошибка!');
+        setData(`Данные загружены. Статус: ${data.status}`);
+      } catch (e) {
+        setError(`Ошибка!`);
       } finally {
         setLoading(false);
       }
