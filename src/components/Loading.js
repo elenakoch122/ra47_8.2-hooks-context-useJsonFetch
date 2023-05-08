@@ -1,5 +1,6 @@
+import useJsonFetch from "./useJsonFetch";
+
 export default function Loading() {
-  return (
-    <div>Loading</div>
-  );
+  const [{loading}] = useJsonFetch('loading');
+  return <div>Loading: {loading}</div>;
 }

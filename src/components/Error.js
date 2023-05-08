@@ -1,5 +1,6 @@
+import useJsonFetch from "./useJsonFetch";
+
 export default function Error() {
-  return (
-    <div>Error</div>
-  );
+  const [{error}] = useJsonFetch('error');
+  return <div>Error: {error}</div>;
 }

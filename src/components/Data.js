@@ -1,5 +1,6 @@
+import useJsonFetch from "./useJsonFetch";
+
 export default function Data() {
-  return (
-    <div>Data</div>
-  );
+  const [{data}] = useJsonFetch('data');
+  return <div>Data: {data}</div>;
 }
