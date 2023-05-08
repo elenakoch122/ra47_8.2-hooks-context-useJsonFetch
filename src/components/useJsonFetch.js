@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useJsonFetch(request) {
+export default function useJsonFetch(request, options = null) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,8 +10,9 @@ export default function useJsonFetch(request) {
       setLoading('Идёт загрузка...');
 
       try {
-        await fetch(process.env.REACT_APP_URL + query);
-        setData('Данные загружены.');
+        const response = await fetch(process.env.REACT_APP_URL + query, options);
+        const data = await response.json();
+        setData(`Данные загружены. ${data}`);
       } catch (error) {
         setError('Ошибка!');
       } finally {
@@ -20,7 +21,7 @@ export default function useJsonFetch(request) {
     };
 
     fetchData(request);
-  }, [request]);
+  }, [request, options]);
 
   return [{data, loading, error}];
 }
